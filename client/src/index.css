@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url(https://img.freepik.com/psd-gratis/retrato-grupo-adorables-cachorros_53876-73977.jpg?w=996&t=st=1702511899~exp=1702512499~hmac=e8bf5672b47977ab2cb94b9f4be9ae6bb1349e1e77067e72056937b27b479091);
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  /* background-image: url(https://img.freepik.com/psd-gratis/retrato-grupo-adorables-cachorros_53876-73977.jpg?w=996&t=st=1702511899~exp=1702512499~hmac=e8bf5672b47977ab2cb94b9f4be9ae6bb1349e1e77067e72056937b27b479091); */
+  
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
