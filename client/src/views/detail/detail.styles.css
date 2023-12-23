@@ -1,0 +1,42 @@
+.detailContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+  
+.imageContainer {
+    flex: 1;
+}
+  
+.image {
+    width: 100%;
+    height: auto;
+}
+  
+.characteristicsContainer {
+    background-color: grey;
+    flex: 1;
+  padding: 0 20px;
+  text-align: justify;
+  color: black;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.buttonReturn {
+    padding: 15px 30px 15px 30px;
+    border: solid;
+    border-radius: 30px;
+    margin-top: 20px;
+    color:black;
+    background-color: yellow;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    font-family: 'Titan One', sans-serif;
+}
+  
+.buttonReturn:hover {
+    background-color: #cdd4cd;
+    transform: translateY(-5px); 
+}

@@ -2,7 +2,7 @@ import {
     GET_DOGS, 
     GET_BY_NAME, 
     GET_DETAIL, 
-    CLEAR_DETAIL,
+    // CLEAR_DETAIL,
     GET_TEMPERAMENT, 
     POST_DOG,
     EMPTY,
@@ -81,11 +81,11 @@ function rootReducer(state =initialState,action){
                 ...state,
                 dogDetail: action.payload,
             }
-        case CLEAR_DETAIL:
-            return{
-                ...state,
-                dogDetail:{},
-            }
+        // case CLEAR_DETAIL:
+        //     return{
+        //         ...state,
+        //         dogDetail:{},
+        //     }
         case GET_TEMPERAMENT:
             return{
                 ...state,

@@ -1,7 +1,4 @@
 import Card from "../Card/card.component";
-
-
-
 import "./cards.styles.css";
 
 function Cards({allDogs}){
@@ -9,9 +6,9 @@ function Cards({allDogs}){
     const dogsList = allDogs;
 
     return(
-        <div className="card-list">
+        <div className="cartas">
             {dogsList?.map(dog =>
-                <Card key={dog.id} dog = {dog}/>
+                <Card className="carta" key={dog.id} dog = {dog}/>
             )}
         </div>
     );

@@ -1,7 +1,35 @@
-.card-list{
+/* .card-list{
     width: 85vw;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
+}
+
+.cartas {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 80%;
+    padding: 100px;
+    margin: 20px;
+
+} */
+
+.cartas{
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Centra las tarjetas horizontalmente */
+}
+  
+@media (max-width: 768px) {
+    .cartas{
+      flex-direction: column; /* Cambia a una columna en pantallas más pequeñas */
+    }
+}
+
+.carta{
+    width: calc(25% - 10px); /* 10px es el espacio entre las tarjetas */
+    margin-bottom: 20px;
 }

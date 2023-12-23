@@ -7,9 +7,9 @@ const Landing = () => {
     return (
         <div className="landing-container">
             <div >
-            <h1>DOGGYS APP</h1>
+            <h1 className="title">PI-Dogs</h1>
             <Link to="/home">
-                <button >HOME</button>
+                <button className="goHome">Go Home!</button>
             </Link>
             </div>
         </div>

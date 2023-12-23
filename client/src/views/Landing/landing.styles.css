@@ -1,6 +1,53 @@
+body{
+    background-image: url(https://img.freepik.com/psd-gratis/retrato-grupo-adorables-cachorros_53876-73977.jpg?w=996&t=st=1702511899~exp=1702512499~hmac=e8bf5672b47977ab2cb94b9f4be9ae6bb1349e1e77067e72056937b27b479091);
+    background-size: cover;
+    background-attachment: fixed; 
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    padding: 0px;
+    background-position: center;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between; 
+    padding: 0px;
+    color: #ffffff;
+}
+
 .landing-container{
-    background-color: blue;
-    position: relative;
-    top: -250px;
-    margin-left: 600px;
+    display: flex;
+    margin-top: 15px;
+    margin-right: 295px;
+    /* font-size: 80px; */
+    font-family: 'Titan One', sans-serif;
+}
+
+.title{
+    /* margin-top: 15px;
+    margin-right: 250px;  */
+    color:black;
+    font-size: 50px;
+    font-family: 'Titan One', sans-serif;
+} 
+
+.goHome{
+    padding: 20px;
+    border: solid;
+    border-radius: 30px;
+    /* margin-right: 250px; */
+    color:black;
+    background-color: yellow;
+    font-size: 15px;
+    /* margin-top: 0px; */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    font-family: 'Titan One', sans-serif;
+}
+
+.goHome:hover {
+    background-color: #cdd4cd;
+    transform: translateY(-5px); /* Desplaza el botón hacia arriba cuando se pasa el mouse */
 }

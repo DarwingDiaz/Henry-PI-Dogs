@@ -1,28 +1,7 @@
-
-
-// import "./navbar.styles.css";
-
-// function NavBar({handleChange,handleSubmit}){
-//     return(
-//         <div className="search-box">
-//             <form onChange={handleChange}>
-//                 <input placeholder="Busqueda" type="search" />
-//                 <button type="submit" onClick={handleSubmit}>
-//                     Buscar
-//                 </button>
-//             </form>
-//         </div>
-//     );
-// }
-
-// export default NavBar;
-
-
-import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getByName } from "../../redux/actions";
-// import Styles from "./SearchBar.module.css"
+import  "./navbar.styles.css"
 
 const NavBar = ({pagination}) => {
     const dispatch = useDispatch();
@@ -41,16 +20,23 @@ const NavBar = ({pagination}) => {
     }
 
     return(
-        <div >
+        <nav className="navbar">
+            
+            <div className="search">
+            <div className="logo">
+                <h1>logo</h1>
+            </div>
             <form onSubmit={handleSubmit} >
                 <input 
+                    className="input"
                     type="text" 
                     onChange={handleInput} 
                     value={searchDog} 
                     placeholder="Name of a dog..."/>
-                <button type="submit">Search</button>
+                <button className="busqueda" type="submit">Search</button>
             </form>
-        </div>
+            </div>
+        </nav>
     )
 }
 
