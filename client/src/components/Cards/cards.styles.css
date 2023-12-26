@@ -17,19 +17,19 @@
 
 } */
 
-.cartas{
+/* .cartas{
     display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Centra las tarjetas horizontalmente */
+  justify-content: space-between; 
 }
   
 @media (max-width: 768px) {
     .cartas{
-      flex-direction: column; /* Cambia a una columna en pantallas más pequeñas */
+      flex-direction: column; 
     }
 }
 
 .carta{
-    width: calc(25% - 10px); /* 10px es el espacio entre las tarjetas */
+    width: calc(25% - 10px); 
     margin-bottom: 20px;
-}
+} */

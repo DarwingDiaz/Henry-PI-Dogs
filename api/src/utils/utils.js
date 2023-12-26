@@ -7,7 +7,7 @@ const cleanArray = (arr) => {
             name: dog.name,
             height: dog.height.metric,
             weight: dog.weight.metric,
-            image: dog.image,
+            image: `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`,
             life_span: dog.life_span,
             temperament: dog.temperament,
             created:false,

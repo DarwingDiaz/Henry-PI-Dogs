@@ -37,8 +37,12 @@ const Detail = () => {
             <div className="imageContainer">
                 {dog && dog[0] ? (
                 <img
-                    src={`https://cdn2.thedogapi.com/images/${dog[0].image}.jpg`}
-                    alt={dog[0].name}
+                    src={
+                        dog.image 
+                        ? dog[0].image
+                        : (dog.image = "https://www.helpguau.com/wp-content/uploads/2019/06/perro-buscando.jpg")
+                    }
+                    alt="perro"
                     width="200"
                     height="200"
                 />
@@ -64,9 +68,9 @@ const Detail = () => {
             </div>
             
     </div>
-    <div className="buttonReturn">
-    <Link to="/home">
-        <button>Return home</button>
+    <div>
+    <Link  to="/home">
+        <button className="buttonReturn" >Return home</button>
     </Link> 
     </div>
     </div>

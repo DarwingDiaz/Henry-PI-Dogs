@@ -2,7 +2,6 @@ import {
     GET_DOGS, 
     GET_BY_NAME, 
     GET_DETAIL, 
-    // CLEAR_DETAIL,
     GET_TEMPERAMENT, 
     POST_DOG,
     EMPTY,
@@ -12,26 +11,41 @@ import {
     FILTER_CREATED } from "../actions/actionsTypes";
 
 
-let initialState = {allDogs:[], dogs:[], temperament: [], dogDetail: {}, newDog: {}};
+let initialState = {allDogs:[], dogs:[], temperament: [], dogDetail: {}, newDog: {}, createdFiler: null};
 
-const calculateAverage = (weight) => {
-    if (!weight) {
-        return -1;
+// const calculateAverage = (weight) => {
+//     if (!weight) {
+//         return -1;
+//     }
+
+//     let numericWeight = -1;
+
+//     if (typeof weight === 'object') {
+//         // Handling cases where weight is an object with 'imperial' or 'metric' properties
+//         numericWeight = parseFloat(weight.imperial || weight.metric || -1);
+//     } else if (typeof weight === 'string') {
+//         // Handling cases where weight is a string
+//         numericWeight = parseFloat(weight.split(' ')[0] || -1);
+//     }
+
+//     return isNaN(numericWeight) ? -1 : numericWeight;
+// }
+
+const calcuteWeightAverage = (weight) =>{
+    if (!weight){
+        return -1
     }
 
-    let numericWeight = -1;
+    const [min,max] = weight.split(' - ').map(parseFloat);
 
-    if (typeof weight === 'object') {
-        // Handling cases where weight is an object with 'imperial' or 'metric' properties
-        numericWeight = parseFloat(weight.imperial || weight.metric || -1);
-    } else if (typeof weight === 'string') {
-        // Handling cases where weight is a string
-        numericWeight = parseFloat(weight.split(' ')[0] || -1);
+    if(isNaN(min) || isNaN(max)){
+        return -1
     }
 
-    return isNaN(numericWeight) ? -1 : numericWeight;
-}
+    const average = (min + max) / 2;
 
+    return isNaN(average) ? -1 : average;
+} 
 // const calculateAverage = (dog) => {
 //     const [ min, max ] = dog.split(" - ")
 //     const minimo = Number(min)
@@ -81,24 +95,17 @@ function rootReducer(state =initialState,action){
                 ...state,
                 dogDetail: action.payload,
             }
-        // case CLEAR_DETAIL:
-        //     return{
-        //         ...state,
-        //         dogDetail:{},
-        //     }
         case GET_TEMPERAMENT:
             return{
                 ...state,
                 temperament: action.payload
             }
-        
         case POST_DOG:
             return{ 
                 ...state,
                 newDog: action.payload
                 
             }
-
         case EMPTY:
             return {
                 ...state,
@@ -106,48 +113,59 @@ function rootReducer(state =initialState,action){
                   dogDetail: {},
                   error: false,
             };
-            case ORDER_BY_NAME:
+        case ORDER_BY_NAME:
                 //Ordenar los perros por nombre
-                const filterDogs = action.payload === "A-Z" ? state.dogs.sort((a,b) => {
-                    if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-                    if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-                    return 0
-                })
-                : state.dogs.sort((a, b) => {
-                    if(a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-                    if(a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-                    return 0
-                });
-                return{
-                    ...state,
-                    dogs: filterDogs,
-                };
-                case FILTER_CREATED:
+        const filterDogs = action.payload === "A-Z" ? state.dogs.sort((a,b) => {
+            if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+            if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;                return 0
+            })
+            : state.dogs.sort((a, b) => {
+            if(a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+            if(a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+            return 0
+            });
+            return{
+            ...state,
+            dogs: filterDogs,
+            };
+        case FILTER_CREATED:
                     //filtro por api o db
-                    const allDogs = state.allDogs;
-                    const filterCreated = action.payload === "db" ? allDogs.filter(dog => dog.createdInDB) : allDogs.filter(dog => !dog.createdInDB)
+        const allDogs = state.allDogs;
+        const filterCreated = action.payload === "true" ? allDogs.filter(dog => dog.created) : allDogs.filter(dog => !dog.created)
         
-                    return {
-                        ...state,
-                        dogs: action.payload === "all" ? state.allDogs : filterCreated
-                    };
+        return {
+            ...state,
+            dogs: action.payload === "all" ? state.allDogs : filterCreated
+        };
+        // case ORDER_WEIGHT:
+             
+        // const isMaxOrder = action.payload === "Max";
+        // const sortedDogs = state.dogs.slice().sort((a, b) => {
+        // const weightA = calculateAverage(a.weight);
+        // const weightB = calculateAverage(b.weight);
+
+        // return isMaxOrder ? weightB - weightA : weightA - weightB;
+        // });
+
+        // return {
+        // ...state,
+        // dogs: sortedDogs,
+        // };
         case ORDER_WEIGHT:
-             //orden por peso
-             const isMaxOrder = action.payload === "Max";
-    const sortedDogs = state.dogs.slice().sort((a, b) => {
-        const weightA = calculateAverage(a.weight);
-        const weightB = calculateAverage(b.weight);
+            const isDescending = action.payload === 'desc'
 
-        return isMaxOrder ? weightB - weightA : weightA - weightB;
-    });
+            const sortedDogs = state.dogs.slice().sort((a,b) => {
+                const weightA = calcuteWeightAverage(a.weight);
+                const weightB = calcuteWeightAverage(b.weight);
 
-    return {
-        ...state,
-        dogs: sortedDogs,
-             };
-            
-        
-                    case FILTER_BY_TEMPERAMENT:
+                return isDescending ? weightB - weightA : weightA - weightB;
+            })
+
+            return{
+                ...state,
+                dogs: sortedDogs
+            }
+        case FILTER_BY_TEMPERAMENT:
                         //filtrar x temperamento
                         const allDogs2 = state.allDogs;
                         const filteredTemp = action.payload === "all" ? allDogs2 : allDogs2.filter(element => {

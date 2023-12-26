@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getByName } from "../../redux/actions";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faPaw} from '@fortawesome/free-solid-svg-icons';
 import  "./navbar.styles.css"
 
 const NavBar = ({pagination}) => {
@@ -23,9 +26,12 @@ const NavBar = ({pagination}) => {
         <nav className="navbar">
             
             <div className="search">
-            <div className="logo">
-                <h1>logo</h1>
-            </div>
+            <Link to = "/">
+                <FontAwesomeIcon className="logo" icon={faPaw} />
+            </Link>
+            <Link to="/create">
+                <button className="creation">Create DOG</button>
+            </Link>
             <form onSubmit={handleSubmit} >
                 <input 
                     className="input"

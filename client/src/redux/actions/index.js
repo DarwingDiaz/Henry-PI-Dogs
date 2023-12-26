@@ -4,7 +4,6 @@ import {
     GET_DOGS, 
     GET_BY_NAME, 
     GET_DETAIL, 
-    CLEAR_DETAIL, 
     GET_TEMPERAMENT, 
     POST_DOG,
     EMPTY, 
@@ -14,7 +13,6 @@ import {
     ORDER_WEIGHT
 } from "./actionsTypes";
 
-// const apiKey = process.env.API_KEY;
 
 export function getDogs(){
     return async function(dispacth){
@@ -58,12 +56,6 @@ export function getDetail(id){
     }
 }
 
-export const clearDetail = () => {
-    return {
-      type: CLEAR_DETAIL,
-    };
-  };
-
 export function getTemperament() {
     return async function (dispatch) {
         const response = await axios.get(`http://localhost:3001/temperaments`)
@@ -76,23 +68,15 @@ export function getTemperament() {
 
 export const postDog = (payload) => async dispatch => {
         
-            // console.log('Datos en postDog:', payload);
-
-            // const response = await axios.post('http://localhost:3001/dogs', payload);
-            // dispatch({
-            //     type: POST_DOG,
-            //     payload: response.data
-            // });
-        try {
+    try {
             
-            await axios.post('http://localhost:3001/dogs', payload)
-            .then(response =>{
-                dispatch({
-                        type: POST_DOG,
-                        payload: response.data
-                    });
+        await axios.post('http://localhost:3001/dogs', payload)
+        .then(response =>{
+            dispatch({
+                type: POST_DOG,
+                payload: response.data
+                });
             })
-           
         } catch (error) {
             return(error)
         }
@@ -113,10 +97,10 @@ export function orderByName(payload){
     }
 }
 
-export function orderWeight(payload){
+export function orderWeight(orderType){
     return {
         type: ORDER_WEIGHT,
-        payload
+        payload: orderType
     }
 }
 

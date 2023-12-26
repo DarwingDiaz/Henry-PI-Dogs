@@ -14,8 +14,8 @@ const Card = ({image, name, temperament,  weight, id}) => {
                             className="img"
                             src={image} 
                             alt={name.url} 
-                            height="250px" 
-                            width="200px"
+                            height="150px" 
+                            width="150px"
                             onError={(e) => {
                                 e.target.src= "https://media.vandalsports.com/i/1200x1200/8-2023/2023822115940_1.jpg";
                                 e.target.onError = null;
