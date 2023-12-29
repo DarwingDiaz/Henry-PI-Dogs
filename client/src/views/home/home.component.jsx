@@ -90,7 +90,7 @@ function Home(){
                             <option  key={3} value="A-Z">A-Z</option>
                             <option  key={2} value="Z-A">Z-A</option>
                         </select>
-
+3
                         <select onChange={(event) => handlerFilterByWeight(event)}>
                             <option key={3} disabled value="Order">Order by weight</option>
                             <option key={1} value="asc">Ascendente</option>

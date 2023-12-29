@@ -27,6 +27,7 @@ const getDogsIdHandler = async(req,res) => {
     }
 }
 
+
 const postDogsHandler = async (req,res) =>{
     try {
         const {image, name, temperament, height, weight, life_span} = req.body

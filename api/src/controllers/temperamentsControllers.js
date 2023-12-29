@@ -5,21 +5,35 @@ require('dotenv').config();
 const {
     API_KEY
   } = process.env;
-const URL = `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`;
+const URL = `https://api.thedogapi.com/v1/breeds?api_ke{API_KEY}`;
 
 
 const getTemperaments = async () =>{
-    const allData = await axios(URL);
+    const {data} = await axios(URL);
 
-    let everyTemperament = allData.data.map(dog => dog.temperament ? dog.temperament : "No Info").map(dog => dog?.split(", "));
-    let eachTemperament = [...new Set(everyTemperament.flat())];
-    eachTemperament.forEach(temp => {
-        if(temp) {
-            Temperament.findOrCreate({where: {name: temp}})
-        }
+    const temperaments = data.flatMap((dog) => {
+        return dog.temperament ? dog.temperament.split(", ") : []
     })
-    eachTemperament = await Temperament.findAll();
-    return eachTemperament
+    
+    const tempFilter = temperaments.reduce((result, index) => {
+        if (result.indexOf(index) === -1) {
+          result.push(index);
+        }
+        return result;
+      }, []);
+    
+      const dogTemperaments = await Promise.all(
+        tempFilter.map(async (temperament) => {
+          const [dbTemperament] = await Temperament.findOrCreate({
+            where: { name: temperament },
+            defaults: {
+              name: temperament,
+            },
+          });
+          return dbTemperament.dataValues;
+        })
+      );
+      return dogTemperaments;
 }
 
 module.exports = {

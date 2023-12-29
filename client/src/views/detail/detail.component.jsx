@@ -16,32 +16,18 @@ const Detail = () => {
         }
     }, [dispatch, id])
     
-    // const getImageUrl = () => {
-    //     if (dog && dog[0] && dog[0].reference_image_id) {
-    //       const imageUrlBase = "https://tu-api-de-imagenes.com/";
-    //       const referenceImageId = dog[0].reference_image_id;
-    //       return `${imageUrlBase}${referenceImageId}.jpg`;
-    //     } else {
-    //       return "https://www.helpguau.com/wp-content/uploads/2019/06/perro-buscando.jpg";
-    //     }
-    //   };
-    
 
     const dog = useSelector((state) => state.dogDetail)
-    // const temp = dog?.temperament?.join(", ");
 
-
+    console.log("Estado del perro:", dog);
     return (
         <div>
         <div className="detailContainer">
             <div className="imageContainer">
-                {dog && dog[0] ? (
+                {dog ? (
                 <img
-                    src={
-                        dog.image 
-                        ? dog[0].image
-                        : (dog.image = "https://www.helpguau.com/wp-content/uploads/2019/06/perro-buscando.jpg")
-                    }
+                    className="image"
+                    src={dog.image}
                     alt="perro"
                     width="200"
                     height="200"
@@ -51,17 +37,15 @@ const Detail = () => {
                 )} 
             </div>
             <div className="characteristicsContainer">
-            {dog && dog[0] ? (
-                <div>
-
-                    <h1 >ID: {dog[0].id}</h1>
-                    <h1>Name: {dog[0].name}</h1>
-                    <h1>Height: {dog[0].height} Kg</h1>
-                    <h1>Weight: {dog[0].weight} Cm</h1>
-                    <h1>Temperaments: {dog[0].temperament}</h1>
-                    <h1>Life span: {dog[0].life_span}</h1>
-                   
-                </div>
+            {dog ? (
+      <div>
+         <h1>ID: {dog.id}</h1>
+         <h1>Name: {dog.name}</h1>
+         <h1>Height: {dog.height ? dog.height : 'N/A'} Kg</h1>
+         <h1>Weight: {dog.weight ? dog.weight : 'N/A' } Cm</h1>
+         <h1>Temperaments: { dog.temperament ? dog.temperament.join(', ') : 'N/A'}</h1>
+         <h1>Life span: {dog.life_span ? dog.life_span : 'N/A'} Years</h1>
+      </div>
                 ):(
                     <Loading/>
                 )}

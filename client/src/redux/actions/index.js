@@ -13,11 +13,13 @@ import {
     ORDER_WEIGHT
 } from "./actionsTypes";
 
+// import { tranformarData } from "./tranformarData";
 
 export function getDogs(){
     return async function(dispacth){
         const response = await axios(`http://localhost:3001/dogs/`)
-        
+        // const transformeData = tranformarData(response.data)
+
         return dispacth({
             type: GET_DOGS,
             payload:response.data

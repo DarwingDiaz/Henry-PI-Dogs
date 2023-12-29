@@ -1,0 +1,11 @@
+.conLoa{
+    justify-content: center;
+    flex-direction: column;
+    display:flex;
+}
+
+.not{
+    color:black;
+    
+    font-size:50px;
+}
