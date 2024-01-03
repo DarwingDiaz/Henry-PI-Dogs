@@ -1,5 +1,5 @@
 .card-container{
-    width: 250px;
+width: 250px;
   border: 1px solid #ddd;
   margin-right: 5px;
   margin-left: 5px;
@@ -9,8 +9,6 @@
   border-radius: 8px;
   overflow: hidden; 
   margin-bottom: 75px;
-  /* box-sizing: border-box; */
-
 }
 .card-container:hover{
     transform: scale(1.05);
@@ -33,7 +31,6 @@
 
 .nombre{
     text-decoration: none;
-    
     color:black;
     font-size:20px;
 }

@@ -1,28 +1,42 @@
-import React from "react";
-import "./pagination.css"
+import "./pagination.styles.css";
 
-const Pagination = ({dogsPerPage, allDogs, pagination}) => {
-    const pageNumbers= [];
+const Pagination = ({ dogsPerPage, allDogs, currentPage, pagination }) => {
+  const pageNumbers = [];
 
-    for (let i = 1; i <= Math.ceil(allDogs/dogsPerPage); i++) {
-        pageNumbers.push(i);
-    }
+  for (let i = 1; i <= Math.ceil(allDogs / dogsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
-    return(
-        <nav >
-            <ul>
-                {
-                    pageNumbers?.map((number) => {
-                        return(
-                            <li key={number}>
-                                <button onClick={() => pagination(number)}>{number}</button>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </nav>
-    )
-}
+  return (
+    <nav className="naveg">
+      <ul className="lista">
+        {currentPage > 1 && (
+          <li className="otro">
+            <button onClick={() => pagination(currentPage - 1)}>
+              Back
+            </button>
+          </li>
+        )}
 
-export default Pagination
+        {pageNumbers.map((number) => (
+          <li className="otro" key={number}>
+            <button
+              onClick={() => pagination(number)}
+              className={currentPage === number ? "active" : ""}
+            >
+              {number}
+            </button>
+          </li>
+        ))}
+
+        {currentPage < pageNumbers.length && (
+          <li className="otro">
+            <button onClick={() => pagination(currentPage + 1)}>Next</button>
+          </li>
+        )}
+      </ul>
+    </nav>
+  );
+};
+
+export default Pagination;

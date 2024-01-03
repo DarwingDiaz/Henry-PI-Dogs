@@ -6,40 +6,49 @@ import {
     GET_DETAIL, 
     GET_TEMPERAMENT, 
     POST_DOG,
-    EMPTY, 
     ORDER_BY_NAME,
     FILTER_BY_TEMPERAMENT,
     FILTER_CREATED,
-    ORDER_WEIGHT
+    ORDER_WEIGHT,
+    CLEAR_DETAIL,
 } from "./actionsTypes";
 
-// import { tranformarData } from "./tranformarData";
 
-export function getDogs(){
+
+export const getDogs = () => {
     return async function(dispacth){
-        const response = await axios(`http://localhost:3001/dogs/`)
-        // const transformeData = tranformarData(response.data)
+        try {
+            const response = await axios(`http://localhost:3001/dogs/`)
 
-        return dispacth({
-            type: GET_DOGS,
-            payload:response.data
-        })
+            return dispacth({
+                type: GET_DOGS,
+                payload:response.data
+            })
+        } catch (error) {
+            window.alert("Error getting dogs")
+        }
     }
-}
-
-export function getByName(name){
-    return async function(dispacth){
-        const response = await axios(`http://localhost:3001/dogs/?name=${name}`)
         
-        return dispacth({
-            type: GET_BY_NAME,
-            payload:response.data
-        })
+}
+
+export const getByName = (name) => {
+    return async function(dispacth){
+        try {
+            const response = await axios(`http://localhost:3001/dogs/?name=${name}`)
+        
+            return dispacth({
+                type: GET_BY_NAME,
+                payload:response.data
+            })
+        } catch (error) {
+            window.alert("Error getting dog by name")
+        }
+        
     }
 }
 
-export function getDetail(id){
-    // Enviar el id al reducer para crear la seccion de Description
+export const getDetail = (id) =>{
+    
     return async function (dispatch) {
         try {
             const response = await axios.get(
@@ -53,18 +62,22 @@ export function getDetail(id){
             })
         }
         catch(error) {
-            console.log("Error fetching dog details:",error);
+            window.alert("Error fetching dog details");
         }
     }
 }
 
-export function getTemperament() {
+export const getTemperament = () => {
     return async function (dispatch) {
-        const response = await axios.get(`http://localhost:3001/temperaments`)
-        return dispatch({
-            type : GET_TEMPERAMENT,
-            payload: response.data
-        })
+        try {
+            const response = await axios.get(`http://localhost:3001/temperaments`)
+            return dispatch({
+                type : GET_TEMPERAMENT,
+                payload: response.data
+            })
+        } catch (error) {
+            window.alert("Error when obtaining dog temperaments")
+        }
     }
 }
 
@@ -80,16 +93,9 @@ export const postDog = (payload) => async dispatch => {
                 });
             })
         } catch (error) {
-            return(error)
+            window.alert("Error adding new dog")
         }
    
-};
-
-//se usa para reestablecer el edo globlal cuando es necesario
-export const empty = () => {
-    return {
-      type: EMPTY
-    };
 };
 
 export function orderByName(payload){
@@ -119,3 +125,9 @@ export const filterCreateDog = (payload) => {
         payload
     }
 }
+
+export const clearDetail = () => {
+    return {
+      type: CLEAR_DETAIL
+    };
+  };

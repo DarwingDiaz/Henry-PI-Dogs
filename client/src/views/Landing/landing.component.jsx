@@ -5,6 +5,7 @@ import "./landing.styles.css";
 
 const Landing = () => {
     return (
+        <div className="fond">
         <div className="landing-container">
             <div >
             <h1 className="title">PI-Dogs</h1>
@@ -12,6 +13,7 @@ const Landing = () => {
                 <button className="goHome">Go Home!</button>
             </Link>
             </div>
+        </div>
         </div>
     )
 }

@@ -71,7 +71,7 @@ const validation = (input) => {
 
     if (input.weight_min < 0) {
         errors.weight_min = "Weight min cannot be less than 0";
-    } else if (input.weight_min > input.weight_max) {
+    } else if (input.weight_min >= input.weight_max) {
         errors.weight_min = "Weight min cannot be greater than max";
     }
 
@@ -83,7 +83,7 @@ const validation = (input) => {
 
     if (input.height_min < 0) {
         errors.height_min = "Height min cannot be less than 0";
-    } else if (input.height_min > input.height_max) {
+    } else if (input.height_min >= input.height_max) {
         errors.height_min = "Height min cannot be greater than max";
     }
 

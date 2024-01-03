@@ -14,7 +14,7 @@ function Cards({allDogs}){
                     id={dog.id}
                     name={dog.name}
                     image={dog.image}
-                    temperament={dog.temperament.join(",")}
+                    temperament={dog.temperaments.join(",")}
                     weight={dog.weight}
                     height={dog.height}
                     life_span={dog.life_span}

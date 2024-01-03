@@ -86,7 +86,7 @@ function Create(){
                 
                 const response = await dispatch(postDog(doggy));
     
-                console.log('Respuesta del servidor:', response);
+                console.error('Respuesta del servidor:', response);
     
                 setInput({
                     name: "",
@@ -100,9 +100,7 @@ function Create(){
                 });
     
                 alert("The dog was created successfully");
-            } catch (error) {
-                console.error('Error al crear el perro:', error);
-    
+            } catch (error) {    
                 alert("Error creating the dog");
             }
         }
@@ -205,7 +203,7 @@ function Create(){
                         placeholder="image"
                         value={input.image} 
                         onChange={handleChange}/>
-
+                    <h2 className="errors">{errors.image && <p>{errors.image}</p>}</h2>
                     </div>
             
                 
@@ -234,9 +232,9 @@ function Create(){
                                 <div>
                                     {d}
                                 </div>
-                                <button 
+                                <div 
                                     className="erase"
-                                    onClick={() => handleErase(d)}>X</button>
+                                    onClick={() => handleErase(d)}>X</div>
                             </div>)
                     })
                 }

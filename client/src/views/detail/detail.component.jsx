@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getDetail} from "../../redux/actions";
+import {getDetail, clearDetail} from "../../redux/actions";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/loading.component";
 import "./detail.styles.css"
 
 const Detail = () => {
+    
     const dispatch = useDispatch();
+    
     const { id } = useParams()
     
     useEffect(() => {
@@ -15,11 +17,14 @@ const Detail = () => {
             dispatch(getDetail(id));
         }
     }, [dispatch, id])
+
+    const handleClick = (e) => {
+        dispatch(clearDetail());
+    };
     
 
     const dog = useSelector((state) => state.dogDetail)
 
-    console.log("Estado del perro:", dog);
     return (
         <div>
         <div className="detailContainer">
@@ -41,10 +46,10 @@ const Detail = () => {
       <div>
          <h1>ID: {dog.id}</h1>
          <h1>Name: {dog.name}</h1>
-         <h1>Height: {dog.height ? dog.height : 'N/A'} Kg</h1>
-         <h1>Weight: {dog.weight ? dog.weight : 'N/A' } Cm</h1>
-         <h1>Temperaments: { dog.temperament ? dog.temperament.join(', ') : 'N/A'}</h1>
-         <h1>Life span: {dog.life_span ? dog.life_span : 'N/A'} Years</h1>
+         <h1>Height: {dog.height ? dog.height : 'N/A'} cm</h1>
+         <h1>Weight: {dog.weight ? dog.weight: "N/A" } kg</h1>
+         <h1>Temperaments: { dog.temperaments ? dog.temperaments.join(', ') : dog.temperament}</h1>
+         <h1>Life span: {dog.life_span ? dog.life_span : "N/A"}</h1>
       </div>
                 ):(
                     <Loading/>
@@ -52,10 +57,11 @@ const Detail = () => {
             </div>
             
     </div>
+
     <div>
-    <Link  to="/home">
-        <button className="buttonReturn" >Return home</button>
-    </Link> 
+        <Link  to="/home">
+            <button onClick={handleClick} className="buttonReturn" >Return home</button>
+        </Link> 
     </div>
     </div>
     )

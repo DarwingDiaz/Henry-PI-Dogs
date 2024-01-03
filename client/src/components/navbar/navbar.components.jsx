@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getByName } from "../../redux/actions";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPaw} from '@fortawesome/free-solid-svg-icons';
 import  "./navbar.styles.css"
 
 const NavBar = ({pagination}) => {
+
     const dispatch = useDispatch();
+
     const [searchDog, setSearchDog] = useState("");
 
     const handleInput = (event) => {
@@ -16,9 +16,13 @@ const NavBar = ({pagination}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
         if(searchDog) {
-            dispatch(getByName(searchDog))}
+            dispatch(getByName(searchDog))
+        }
+
         setSearchDog("")
+
         pagination(1)
     }
 
@@ -27,7 +31,7 @@ const NavBar = ({pagination}) => {
             
             <div className="search">
             <Link to = "/">
-                <FontAwesomeIcon className="logo" icon={faPaw} />
+                <img className="landing" src={"https://images.vexels.com/media/users/3/201900/isolated/preview/460d4e24d0eab9daec3bf810c10903e4-huella-de-perro-hueso-plana.png"} alt={"pata"} />
             </Link>
             <Link to="/create">
                 <button className="creation">Create DOG</button>

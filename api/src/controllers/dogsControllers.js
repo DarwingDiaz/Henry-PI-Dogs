@@ -18,7 +18,11 @@ const getDogs = async()=>{
                 attributes: []
             }
         }
-    })
+    }).then(dogs => dogs.map(dog => ({
+        ...dog.dataValues,
+        temperament: dog.temperaments.map(temp => temp.name).join(", ")
+    })));
+
     
     const apiDogsRaw = (await axios.get(URL)).data
 
@@ -50,10 +54,8 @@ const getDogsByName = async (name) =>{
     const apiDogs = cleanArray(apiDogsRaw)
 
     const filterApi = apiDogs.filter(dog => String(dog.name).toLowerCase().includes(String(name).toLowerCase()));
-     
+    
     return [...filterApi, ...dbDogs];
-
-
 };
 
 const getDogById = async (id, source) => {
@@ -70,8 +72,8 @@ const getDogById = async (id, source) => {
             image: dogImagen.data.url,
             weight: data.weight.metric,
             height: data.height.metric,
-            life: data.life_span,
-            temperaments: data.temperament,
+            life_span: data.life_span,
+            temperament: data.temperament,
         };
     
     } else{
@@ -85,7 +87,7 @@ const getDogById = async (id, source) => {
             }
     }).then((dog) => ({
         ...dog.dataValues,
-        temperament: dog.temperaments.map((temp) => temp.name),
+        temperaments: dog.temperaments.map((temp) => temp.name),
     }));
     }
     return dog;
@@ -93,7 +95,12 @@ const getDogById = async (id, source) => {
 
 const postDog = async (dogData) =>{
     
-    const {image, name, temperament, height, weight, life_span} = dogData
+    const { image, 
+            name, 
+            temperament, 
+            height, 
+            weight, 
+            life_span} = dogData
    
     if (temperament.length === 0) {
 		return res.sendStatus(500);
@@ -112,13 +119,9 @@ const postDog = async (dogData) =>{
         where: {name : temperament} 
     })
 
-    console.log('Temperamentos encontrados:', temperamentFilter);
+    await dogCreate.addTemperaments(temperamentFilter)
 
-     await dogCreate.addTemperaments(temperamentFilter)
-
-     console.log('Temperamentos asociados al perro.');
-
-     return dogCreate
+    return dogCreate
 }
 
 module.exports = {

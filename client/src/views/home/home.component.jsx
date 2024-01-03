@@ -11,8 +11,6 @@ import NavBar from "../../components/navbar/navbar.components";
 import Card from "../../components/Card/card.component"
 import Pagination from "../../components/Pagination/pagination.component";
 import Loading from "../../components/Loading/loading.component"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRotateRight } from '@fortawesome/free-solid-svg-icons';
 
 import "./home.styles.css";
 
@@ -90,7 +88,6 @@ function Home(){
                             <option  key={3} value="A-Z">A-Z</option>
                             <option  key={2} value="Z-A">Z-A</option>
                         </select>
-3
                         <select onChange={(event) => handlerFilterByWeight(event)}>
                             <option key={3} disabled value="Order">Order by weight</option>
                             <option key={1} value="asc">Ascendente</option>
@@ -111,9 +108,11 @@ function Home(){
                             <option  value={temp.name} key={index}>{temp.name}</option>))}
                         </select>
                         {searchString && <p >{searchString}</p>}
+                        
                         <div >
-                             <FontAwesomeIcon className="arrow" icon={faArrowRotateRight} onClick={handleClick} />
-                        </div>
+                            <img onClick={handleClick} className="logo" src={"https://cdn-icons-png.flaticon.com/512/81/81501.png"} alt= "reset"/>
+                        </div>  
+                       
                     </div>
                 </div>    
             </header>
@@ -141,7 +140,7 @@ function Home(){
                     </div>
                     <div className="pagina">
                         
-                        <Pagination className="pag"  dogsPerPage={dogsPerPage} allDogs={allDogs.length} pagination={pagination}/>
+                        <Pagination className="pag"  dogsPerPage={dogsPerPage} allDogs={allDogs.length} currentPage={currentPage} pagination={pagination}/>
 
                     </div>
         </div>

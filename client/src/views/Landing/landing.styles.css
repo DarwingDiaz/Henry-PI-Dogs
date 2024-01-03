@@ -21,13 +21,11 @@ body{
     display: flex;
     margin-top: 15px;
     margin-right: 295px;
-    /* font-size: 80px; */
     font-family: 'Titan One', sans-serif;
 }
 
 .title{
-    /* margin-top: 15px;
-    margin-right: 250px;  */
+    
     color:black;
     font-size: 50px;
     font-family: 'Titan One', sans-serif;
@@ -37,11 +35,9 @@ body{
     padding: 20px;
     border: solid;
     border-radius: 30px;
-    /* margin-right: 250px; */
     color:black;
     background-color: yellow;
     font-size: 15px;
-    /* margin-top: 0px; */
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
     font-family: 'Titan One', sans-serif;
@@ -49,5 +45,5 @@ body{
 
 .goHome:hover {
     background-color: #cdd4cd;
-    transform: translateY(-5px); /* Desplaza el botón hacia arriba cuando se pasa el mouse */
+    transform: translateY(-5px);
 }
