@@ -47,7 +47,10 @@ const getDogsByName = async (name) =>{
                 attributes: []
             }
         }
-    })
+    }).then(dogs => dogs.map(dog => ({
+        ...dog.dataValues,
+        temperament: dog.temperaments.map(temp => temp.name).join(", ")
+    })));
 
     const apiDogsRaw = (await axios.get(URL)).data
 

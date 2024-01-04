@@ -74,7 +74,7 @@ function Create(){
     
         if (Object.keys(validationErrors).length === 0) {
             try {
-               const doggy = {
+               const theDog = {
                     name: input.name,
                     height: `${input.height_min} - ${input.height_max}`,
                     weight: `${input.weight_min} - ${input.weight_max}`,
@@ -83,10 +83,7 @@ function Create(){
                     temperament: input.temperament,
                 };
 
-                
-                const response = await dispatch(postDog(doggy));
-    
-                console.error('Respuesta del servidor:', response);
+                await dispatch(postDog (theDog));
     
                 setInput({
                     name: "",
@@ -100,14 +97,17 @@ function Create(){
                 });
     
                 alert("The dog was created successfully");
-            } catch (error) {    
+
+            } catch(error){   
+
                 alert("Error creating the dog");
+
             }
         }
     }
 
     return(
-        <div >
+        <div className="create">
             <div>
                 <Link to="/home">
                     <button className="onHome" >Home</button>
@@ -188,7 +188,7 @@ function Create(){
                         className="in"
                         name="life_span"
                         placeholder="lifespan"
-                        type="number"
+                        type="text"
                         value={input.life_span}
                         onChange={handleChange}></input>
                     <h2 className="errors">{errors.life_span && (<p>{errors.life_span}</p>)}</h2>

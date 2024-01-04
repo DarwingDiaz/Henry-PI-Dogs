@@ -40,3 +40,4 @@ const Pagination = ({ dogsPerPage, allDogs, currentPage, pagination }) => {
 };
 
 export default Pagination;
+

@@ -31,7 +31,7 @@ const NavBar = ({pagination}) => {
             
             <div className="search">
             <Link to = "/">
-                <img className="landing" src={"https://images.vexels.com/media/users/3/201900/isolated/preview/460d4e24d0eab9daec3bf810c10903e4-huella-de-perro-hueso-plana.png"} alt={"pata"} />
+                <img className="landing" src={"https://cdn-icons-png.flaticon.com/512/91/91533.png"} alt={"pata"} />
             </Link>
             <Link to="/create">
                 <button className="creation">Create DOG</button>

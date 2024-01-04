@@ -26,7 +26,8 @@ const Detail = () => {
     const dog = useSelector((state) => state.dogDetail)
 
     return (
-        <div>
+        <div className="detail">
+        <div className="container">
         <div className="detailContainer">
             <div className="imageContainer">
                 {dog ? (
@@ -49,13 +50,13 @@ const Detail = () => {
          <h1>Height: {dog.height ? dog.height : 'N/A'} cm</h1>
          <h1>Weight: {dog.weight ? dog.weight: "N/A" } kg</h1>
          <h1>Temperaments: { dog.temperaments ? dog.temperaments.join(', ') : dog.temperament}</h1>
-         <h1>Life span: {dog.life_span ? dog.life_span : "N/A"}</h1>
+         <h1>Life span: {dog.life_span ? (dog.life_span.includes("years") ? dog.life_span : `${dog.life_span} years`) : "N/A"}</h1>
       </div>
                 ):(
                     <Loading/>
                 )}
             </div>
-            
+         </div>   
     </div>
 
     <div>

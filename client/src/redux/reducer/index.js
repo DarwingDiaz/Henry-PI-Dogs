@@ -8,10 +8,17 @@ import {
     ORDER_WEIGHT,
     FILTER_BY_TEMPERAMENT,
     FILTER_CREATED,
-    CLEAR_DETAIL} from "../actions/actionsTypes";
+    CLEAR_DETAIL
+} from "../actions/actionsTypes";
 
 
-let initialState = {allDogs:[], dogs:[], temperament: [], dogDetail: {}, newDog: {}};
+let initialState = {
+    allDogs:[], 
+    dogs:[], 
+    temperament:[],
+    dogDetail: {}, 
+    newDog: {},
+  };
 
 const calcuteWeightAverage = (weight) =>{
     if (!weight){

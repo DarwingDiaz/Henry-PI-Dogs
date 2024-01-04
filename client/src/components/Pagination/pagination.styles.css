@@ -16,7 +16,7 @@
 
 button {
   padding: 8px 16px; 
-  background-color: yellow;
+  background-color:#FAAB78;
   color: black; 
   border: none;
   cursor: pointer;
@@ -24,11 +24,11 @@ button {
 }
 
 button:hover {
-  background-color: rgba(153, 153, 153, 0.9); 
+  background-color: #FFDCA9; 
 }
 
 button.active {
-  background-color: grey;
+  background-color: #FFDCA9;
   font-weight: bold;
-  color: white;
+  color: black;
 }
